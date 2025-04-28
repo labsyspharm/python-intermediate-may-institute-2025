@@ -1,7 +1,7 @@
 ---
 title: "Programming Style"
-teaching: 15
-exercises: 15
+teaching: 10
+exercises: 10
 questions:
 - "How can I make my programs more readable?"
 - "How do most programmers format their code?"
@@ -38,8 +38,8 @@ We may highlight some points:
     and to understand what their contributions should look like.
     The [PEP8 application and Python library](https://pypi.python.org/pypi/pep8)
     can check your code for compliance with PEP8.
-*   [Google style guide on Python](https://google.github.io/styleguide/pyguide.html) 
-    supports the use of PEP8 and extend the coding style to more specific structure of 
+*   [Google style guide on Python](https://google.github.io/styleguide/pyguide.html)
+    supports the use of PEP8 and extend the coding style to more specific structure of
     a Python code, which may be interesting also to follow.
 
 ## Use assertions to check for internal errors.
@@ -212,7 +212,7 @@ average(values)
 > > string_machine('et cetera', 10)
 > > ~~~
 > > {: .language-python}
-> > 
+> >
 > > ~~~
 > > et cetera
 > > *****-***

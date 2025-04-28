@@ -1,7 +1,7 @@
 ---
 title: "Feedback"
 teaching: 0
-exercises: 15
+exercises: 5
 questions:
 - "How did the class go?"
 objectives:

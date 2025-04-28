@@ -1,7 +1,7 @@
 ---
 title: "Writing Functions"
 teaching: 10
-exercises: 15
+exercises: 10
 questions:
 - "How can I create my own functions?"
 objectives:
@@ -187,7 +187,7 @@ result of call is: None
 > >
 > > ~~~
 > > calling <function report at 0x7fd128ff1bf8> 22.5
-> > ~~~ 
+> > ~~~
 > > {: .output}
 > >
 > > A function call always needs parenthesis, otherwise you get memory address of the function object. So, if we wanted to call the function named report, and give it the value 22.5 to report on, we could have our function call as follows
@@ -227,12 +227,12 @@ result of call is: None
 >    print(joined)
 > ~~~
 > {: .language-python}
-> 
+>
 > > ## Solution
-> > 
+> >
 > > 1. The first line of output (`1871/3/19`) is from the print function inside `print_date()`, while the second line
 > > is from the print function below the function call. All of the code inside `print_date()` is executed first, and
-> > the program then "leaves" the function and executes the rest of the code.   
+> > the program then "leaves" the function and executes the rest of the code.
 > > 2. The problem with the example is that the function is defined *after* the call to the function is made. Python
 > > therefore doesn't understand the function call.
 > {: .solution}
@@ -256,7 +256,7 @@ result of call is: None
 > >
 > > ~~~
 > > import pandas as pd
-> > 
+> >
 > > def min_in_data(filename):
 > >     data = pd.read_csv(filename)
 > >     return data.min()
@@ -320,20 +320,20 @@ result of call is: None
 > 3.  When and why is it useful to call functions this way?
 > {: .language-python}
 > > ## Solution
-> > 
+> >
 > > 1. `2003/2/1`
-> > 2. We saw examples of using *named arguments* when working with the pandas library. For example, when reading in a dataset 
-> > using `data = pd.read_csv('data/gapminder_gdp_europe.csv', index_col='country')`, the last argument `index_col` is a 
-> > named argument.  
-> > 3. Using named arguments can make code more readable since one can see from the function call what name the different arguments 
-> > have inside the function. It can also reduce the chances of passing arguments in the wrong order, since by using named arguments 
+> > 2. We saw examples of using *named arguments* when working with the pandas library. For example, when reading in a dataset
+> > using `data = pd.read_csv('data/gapminder_gdp_europe.csv', index_col='country')`, the last argument `index_col` is a
+> > named argument.
+> > 3. Using named arguments can make code more readable since one can see from the function call what name the different arguments
+> > have inside the function. It can also reduce the chances of passing arguments in the wrong order, since by using named arguments
 > > the order doesn't matter.
 > {: .solution}
 {: .challenge}
 
 > ## Encapsulate of If/Print Block
 >
-> The code below will run on a label-printer for chicken eggs.  A digital scale will report a chicken egg mass (in grams) to the computer and then the computer will print a label.  
+> The code below will run on a label-printer for chicken eggs.  A digital scale will report a chicken egg mass (in grams) to the computer and then the computer will print a label.
 >
 > Please re-write the code so that the if-block is folded into a function.
 >
@@ -346,7 +346,7 @@ result of call is: None
 >     mass=70+20.0*(2.0*random.random()-1.0)
 >
 >     print(mass)
->    
+>
 >     #egg sizing machinery prints a label
 >     if(mass>=85):
 >        print("jumbo")
@@ -371,7 +371,7 @@ result of call is: None
 >     # the (random) mass will be 70 +/- 20 grams
 >     mass=70+20.0*(2.0*random.random()-1.0)
 >
->     print(mass,print_egg_label(mass))    
+>     print(mass,print_egg_label(mass))
 >
 > ~~~
 > {: .language-python}
@@ -466,7 +466,7 @@ result of call is: None
 > > {: .language-python}
 > >
 > > 3.
-> > 
+> >
 > > We need to loop over the reported years
 > >    to obtain the average for the relevant ones in the data.
 > >
@@ -489,7 +489,7 @@ result of call is: None
 > > avg_gdp_in_decade('Japan','asia',1983)
 > > ~~~
 > > {: .language-python}
-> > 
+> >
 > > ~~~
 > > 20880.023800000003
 > > ~~~

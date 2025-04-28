@@ -1,4 +1,6 @@
 ---
+start: true
+start_time: 540
 title: "Libraries"
 teaching: 10
 exercises: 10
@@ -206,7 +208,7 @@ m.cos(m.pi)
 > > {: .language-python}
 > >
 > > Note that this function returns a list of values. We will learn about
-> > lists in [episode 11]({% link _episodes/11-lists.md %}).
+> > lists in [episode 11]({% link _episodes/07-lists.md %}).
 > >
 > > There's also other functions you could use, but with more convoluted
 > > code as a result.
@@ -233,9 +235,9 @@ m.cos(m.pi)
 > > ## Solution
 > >
 > > ~~~
-> > import math 
+> > import math
 > > import random
-> > bases = "ACTTGCTTGAC" 
+> > bases = "ACTTGCTTGAC"
 > > n_bases = len(bases)
 > > idx = random.randrange(n_bases)
 > > print("random base", bases[idx], "base index", idx)

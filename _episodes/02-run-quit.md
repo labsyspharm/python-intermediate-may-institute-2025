@@ -33,9 +33,9 @@ and you should see a prompt like this, but more colorful:
 ~~~
 Python 3.6.6 (default, Sep 19 2018, 12:51:03)
 Type 'copyright', 'credits' or 'license' for more information
-IPython 6.5.0 -- An enhanced Interactive Python. Type '?' for help. 
+IPython 6.5.0 -- An enhanced Interactive Python. Type '?' for help.
 
-In [1]: 
+In [1]:
 ~~~
 {: .output}
 
@@ -54,7 +54,7 @@ In [1]:
 - Now, in your terminal, create a new directory under `swc-python` called
   `scripts`.
 
-- In atom, create a new file, and then save it as `test.py` in the `scripts` 
+- In atom, create a new file, and then save it as `test.py` in the `scripts`
   directory.
 
 - This is a python script file. Note that `.py` indicats a python file, but this
