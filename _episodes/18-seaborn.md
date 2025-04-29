@@ -60,9 +60,10 @@ country      Albania       Austria       Belgium  Bosnia and Herzegovina      Bu
 {: .output}
 
 This data is organized in the so-called *wide form*. The table cells hold values of a single variable (in this case GDP per capita)
-with two other identifying variables (year and country) encoded in the row and column labels. This may appear convenient
-but is actually quite limiting, most critically because it restricts us to storing just three variables. Nonetheless, seaborn will
-do its best to accept data of this form. Later we will see a different way of organizing dataframes that offers much more flexibility.
+with two other identifying variables (year and country) encoded in the row and column labels. This may appear convenient and aligns
+with how we generally organize things in spreadsheets but is actually quite limiting, most critically because it restricts us to
+storing just three variables. Nonetheless, seaborn will do its best to accept data of this form. Later we will see a different way of
+organizing dataframes that offers much more flexibility.
 
 * `pairplot` builds a grid of pairwise comparisons between each numeric column in a dataframe.
 
@@ -73,8 +74,9 @@ sns.pairplot(data_plot, kind='reg')
 
 ![Pairplot of GDP values by country](../fig/17_pairplot_gdp.svg)
 
-* Cells on the diagonal contain single-variable histograms. Other cells show scatter plots between the associated columns.
-* `kind='reg'` adds a linear regression line with 95% confidence intervals.
+* Cells on the diagonal contain single-variable histograms. Other cells show scatter plots between the associated columns of the wide
+  table.
+* `kind='reg'` adds linear regression fits with 95% confidence intervals.
 * seaborn is not a substitute for explicit statistical analysis, rather it's intended to help uncover patterns during
   exploratory data analyses.
 
@@ -95,12 +97,13 @@ sns.catplot(data_plot, kind='box')
 * Because we passed a wide-form dataframe, we lose some beneficial features that seaborn can otherwise provide such as automatic axes labels
 and tighter control over how the variables are mapped onto the plot's axes and visual aspects.
 * For example we might want to show the boxplots in the catplot on the X-axis, but this isn't supported with wide-form data.
-* seaborn offers many many other plotting functions, most of which accept wide-form dataframes but likewise with limited functionality.
+* seaborn offers many other plotting functions, most of which accept wide-form dataframes but likewise with limited functionality.
 
 ## Seaborn plots using long-form data
 
 An alternative way to organize dataframes is the *long form*, in which every variable is stored in its own column, with the column label
-providing its name. Every observation is stored as a separate row. seaborn works best with dataframes in this format, as it provides
+providing its name. Every observation is stored as a separate row. This is often referred to as "tidy data" -- you can read more about this
+concept in the paper *Tidy Data* by Hadley Wickham. seaborn works best with dataframes in this format, as it provides
 maximum control over which variables to plot and map to the various visual presentation styles.
 
 Long-form dataframes also support an unlimited number of variables! You can record every variable you think might be useful and decide
@@ -108,11 +111,11 @@ whether and how to plot it later.
 
 ![long vs wide form data](https://seaborn.pydata.org/_images/data_structure_19_0.png)
 
-* pandas offers many ways to move between wide-form and long-form data. `melt` converts from wide to long for some simple cases including
-  our Europe GDP data.
+* pandas offers many ways to move between wide-form and long-form data as well as refine messier data into a tidy form. `melt` converts
+  from wide to long for some simple cases and will work well with our Europe GDP data.
 
-* To demonstrate, we'll take a tiny slice of our GDP dataframe. We will turn the index back into a regular column, which will make using
-  `melt` more straightforward.
+* To demonstrate, we'll take a tiny rectangular slice of our GDP dataframe. We will turn the index back into a regular column, which
+  will make using `melt` more straightforward.
 
 ~~~
 melt_test = data.iloc[:3, :2].reset_index()
@@ -180,3 +183,12 @@ sns.catplot(data_long, y='country', x='gdpPercap', kind='box')
 
 ![Relplot of GDP values by country using long-form data](../fig/17_long_relplot_gdp.svg)
 ![Catplot of GDP values by country using long-form data](../fig/17_long_catplot_gdp.svg)
+
+~~~
+prot = pd.read_csv('data/proteomics_protein_level_data.csv')
+prot[['Treatment', 'Frx', 'Replicate']] = prot['originalRUN'].str.replace('240805_Sarthy_', '').str.rsplit('_', n=2).tolist()
+unique = prot.groupby(['Treatment', 'Frx', 'Replicate'])['Protein'].count().rename('Unique Proteins').reset_index()
+trt_order = ['DMSO', 'Acla', 'Doxo', 'Dim_dox', 'Etopo']
+sns.catplot(unique, x='Frx', hue='Treatment', y='Unique Proteins', kind='bar', hue_order=trt_order, aspect=0.6)
+~~~
+{: .language-python}
