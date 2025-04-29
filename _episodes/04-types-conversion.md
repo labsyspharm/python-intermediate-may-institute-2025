@@ -180,7 +180,7 @@ Out[2]: '12'
 ## Can mix integers and floats freely in operations.
 
 *   Integers and floating-point numbers can be mixed in arithmetic.
-    *   Python 3 automatically converts integers to floats as needed. (Integer division in Python 2 will return an integer, the *floor* of the division.)
+    *   Python automatically converts integers to floats as needed, for example when dividing by an integer.
 
 ~~~
 In [3]: 1 / 2.0
@@ -301,17 +301,6 @@ first is 2 and second is 5
 > 5 % 3: 2
 > ~~~
 > {: .output}
->
-> However in Python2 (and other languages), the `/` operator between two integer types perform a floor (`//`) division. To perform a float division, we have to convert one of the integers to float.
->
-> ~~~
-> print('5 // 3:', 1)
-> print('5 / 3:', 1 )
-> print('5 / float(3):', 1.6666667 )
-> print('float(5) / 3:', 1.6666667 )
-> print('float(5 / 3):', 1.0 )
-> print('5 % 3:', 2)
-> ~~~
 >
 > If `num_subjects` is the number of subjects taking part in a study,
 > and `num_per_survey` is the number that can take part in a single survey,
