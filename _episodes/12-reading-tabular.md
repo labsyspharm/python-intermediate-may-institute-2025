@@ -62,11 +62,11 @@ data
 > which is why the path to the file is `data/gapminder_gdp_oceania.csv`.
 > If you forget to include `data/`,
 > or if you include it but your copy of the file is somewhere else,
-> you will get a [runtime error]({{ page.root }}/04-built-in/#runtime-error)
+> you will get a [runtime error]({{ page.root }}/05-built-in/#runtime-error)
 > that ends with a line like this:
 >
 > ~~~
-> OSError: File b'gapminder_gdp_oceania.csv' does not exist
+> FileNotFoundError: No such file or directory: 'gapminder_gdp_oceania.csv'
 > ~~~
 > {: .error}
 {: .callout}
@@ -181,7 +181,7 @@ gdpPercap_2007  34435.36744  25185.00911
 
 ## Use `DataFrame.describe` to get summary statistics about data.
 
-DataFrame.describe() gets the summary statistics of only the columns that have numerical data. 
+DataFrame.describe() gets the summary statistics of only the columns that have numerical data.
 All other columns are ignored, unless you use the argument `include='all'`.
 ~~~
 data.describe()
@@ -261,39 +261,39 @@ max      23424.766830    26997.936570    30687.754730    34435.367440
 > > americas.head(n=3)
 > > ~~~
 > >{: .language-python}
-> > 
+> >
 > > The output is then
 > > ~~~
 > >          continent  gdpPercap_1952  gdpPercap_1957  gdpPercap_1962  \
-> >country                                                               
-> >Argentina  Americas     5911.315053     6856.856212     7133.166023   
-> >Bolivia    Americas     2677.326347     2127.686326     2180.972546   
-> >Brazil     Americas     2108.944355     2487.365989     3336.585802   
+> >country
+> >Argentina  Americas     5911.315053     6856.856212     7133.166023
+> >Bolivia    Americas     2677.326347     2127.686326     2180.972546
+> >Brazil     Americas     2108.944355     2487.365989     3336.585802
 > >
 > >           gdpPercap_1967  gdpPercap_1972  gdpPercap_1977  gdpPercap_1982  \
-> >country                                                                     
-> >Argentina     8052.953021     9443.038526    10079.026740     8997.897412   
-> >Bolivia       2586.886053     2980.331339     3548.097832     3156.510452   
-> >Brazil        3429.864357     4985.711467     6660.118654     7030.835878   
+> >country
+> >Argentina     8052.953021     9443.038526    10079.026740     8997.897412
+> >Bolivia       2586.886053     2980.331339     3548.097832     3156.510452
+> >Brazil        3429.864357     4985.711467     6660.118654     7030.835878
 > >
 > >           gdpPercap_1987  gdpPercap_1992  gdpPercap_1997  gdpPercap_2002  \
-> >country                                                                     
-> >Argentina     9139.671389     9308.418710    10967.281950     8797.640716   
-> >Bolivia       2753.691490     2961.699694     3326.143191     3413.262690   
-> >Brazil        7807.095818     6950.283021     7957.980824     8131.212843   
+> >country
+> >Argentina     9139.671389     9308.418710    10967.281950     8797.640716
+> >Bolivia       2753.691490     2961.699694     3326.143191     3413.262690
+> >Brazil        7807.095818     6950.283021     7957.980824     8131.212843
 > >
-> >           gdpPercap_2007  
-> >country                    
-> >Argentina    12779.379640  
-> >Bolivia       3822.137084  
-> >Brazil        9065.800825 
-> > ~~~ 
+> >           gdpPercap_2007
+> >country
+> >Argentina    12779.379640
+> >Bolivia       3822.137084
+> >Brazil        9065.800825
+> > ~~~
 > >{: .output}
 > > 2. To check out the last three rows of `americas`, we would use the command, `americas.tail(n=3)`,
 > > analogous to `head()` used above. However, here we want to look at the last three columns so we need
-> > to change our view and then use `tail()`. To do so, we create a new DataFrame in which rows and 
+> > to change our view and then use `tail()`. To do so, we create a new DataFrame in which rows and
 > > columns are switched
-> > 
+> >
 > > ~~~
 > > americas_flipped = americas.T
 > > ~~~
@@ -307,25 +307,25 @@ max      23424.766830    26997.936570    30687.754730    34435.367440
 > > The output is then
 > > ~~~
 > > country        Argentina  Bolivia   Brazil   Canada    Chile Colombia  \
-> > gdpPercap_1997   10967.3  3326.14  7957.98  28954.9  10118.1  6117.36   
-> > gdpPercap_2002   8797.64  3413.26  8131.21    33329  10778.8  5755.26   
-> > gdpPercap_2007   12779.4  3822.14   9065.8  36319.2  13171.6  7006.58   
-> > 
+> > gdpPercap_1997   10967.3  3326.14  7957.98  28954.9  10118.1  6117.36
+> > gdpPercap_2002   8797.64  3413.26  8131.21    33329  10778.8  5755.26
+> > gdpPercap_2007   12779.4  3822.14   9065.8  36319.2  13171.6  7006.58
+> >
 > > country        Costa Rica     Cuba Dominican Republic  Ecuador    ...     \
-> > gdpPercap_1997    6677.05  5431.99             3614.1  7429.46    ...      
-> > gdpPercap_2002    7723.45  6340.65            4563.81  5773.04    ...      
-> > gdpPercap_2007    9645.06   8948.1            6025.37  6873.26    ...      
-> > 
+> > gdpPercap_1997    6677.05  5431.99             3614.1  7429.46    ...
+> > gdpPercap_2002    7723.45  6340.65            4563.81  5773.04    ...
+> > gdpPercap_2007    9645.06   8948.1            6025.37  6873.26    ...
+> >
 > > country          Mexico Nicaragua   Panama Paraguay     Peru Puerto Rico  \
-> > gdpPercap_1997   9767.3   2253.02  7113.69   4247.4  5838.35     16999.4   
-> > gdpPercap_2002  10742.4   2474.55  7356.03  3783.67  5909.02     18855.6   
-> > gdpPercap_2007  11977.6   2749.32  9809.19  4172.84  7408.91     19328.7   
-> > 
-> > country        Trinidad and Tobago United States  Uruguay Venezuela  
-> > gdpPercap_1997             8792.57       35767.4  9230.24   10165.5  
-> > gdpPercap_2002             11460.6       39097.1     7727   8605.05  
-> > gdpPercap_2007             18008.5       42951.7  10611.5   11415.8  
-> > ~~~ 
+> > gdpPercap_1997   9767.3   2253.02  7113.69   4247.4  5838.35     16999.4
+> > gdpPercap_2002  10742.4   2474.55  7356.03  3783.67  5909.02     18855.6
+> > gdpPercap_2007  11977.6   2749.32  9809.19  4172.84  7408.91     19328.7
+> >
+> > country        Trinidad and Tobago United States  Uruguay Venezuela
+> > gdpPercap_1997             8792.57       35767.4  9230.24   10165.5
+> > gdpPercap_2002             11460.6       39097.1     7727   8605.05
+> > gdpPercap_2007             18008.5       42951.7  10611.5   11415.8
+> > ~~~
 > >{: .output}
 > > Note: we could have done the above in a single line of code by 'chaining' the commands:
 > > ~~~
@@ -352,7 +352,7 @@ max      23424.766830    26997.936570    30687.754730    34435.367440
 > {: .output}
 >
 > What value(s) should you pass to `read_csv` to read `microbes.csv` in `analysis.ipynb`?
-> 
+>
 > > ## Solution
 > > We need to specify the path to the file of interest in the call to `pd.read_csv`. We first need to 'jump' out of
 > > the folder `thesis` using '../' and then into the folder `field_data` using 'field_data/'. Then we can specify the filename `microbes.csv.
@@ -365,7 +365,7 @@ max      23424.766830    26997.936570    30687.754730    34435.367440
 {: .challenge}
 
 > ## Writing Data
-> 
+>
 > As well as the `read_csv` function for reading data from a file,
 > Pandas provides a `to_csv` function to write dataframes to files.
 > Applying what you've learned about reading from files,
@@ -382,8 +382,8 @@ max      23424.766830    26997.936570    30687.754730    34435.367440
 > > help(americas.to_csv)
 > > ~~~
 > >{: .language-python}
-> > Note that `help(to_csv)` throws an error! This is a subtlety and is due to the fact that `to_csv` is NOT a function in 
-> > and of itself and the actual call is `americas.to_csv`. 
-> > 
+> > Note that `help(to_csv)` throws an error! This is a subtlety and is due to the fact that `to_csv` is NOT a function in
+> > and of itself and the actual call is `americas.to_csv`.
+> >
 > {: .solution}
 {: .challenge}
